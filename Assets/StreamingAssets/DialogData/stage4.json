@@ -1,0 +1,30 @@
+{
+	"readOnSceneLoad": "false",
+	"endCallback": "PlayEndingCredit",
+	"dialogLength": "4",
+	"scriptData": [{
+			"script": "이제 집 가는거야?",
+			"characterName": "꼬맹이",
+			"characterSprite": "PlayerImage",
+			"dialogBG": "DialogBG_L"
+		},
+		{
+			"script": "아싸! 엄마한테 간다!",
+			"characterName": "꼬맹이",
+			"characterSprite": "PlayerImage",
+			"dialogBG": "DialogBG_L"
+		},
+		{
+			"script": "너 잘 있어. 내가 또 보러 올께.",
+			"characterName": "꼬맹이",
+			"characterSprite": "PlayerImage",
+			"dialogBG": "DialogBG_L"
+		},
+		{
+			"script": "내게 아이가 있었다면 이런 기분이였을까?",
+			"characterName": " ",
+			"characterSprite": "None",
+			"dialogBG": "DialogBG_R"
+		}
+	]
+}

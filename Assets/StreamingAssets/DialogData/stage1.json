@@ -1,0 +1,24 @@
+{
+	"readOnSceneLoad": "true",
+	"endCallback": "PrintGameGuide,ActiveMonster",
+	"dialogLength": "3",
+	"scriptData": [{
+			"script": "으아..여기가 어디야",
+			"characterName": "꼬맹이",
+			"characterSprite": "PlayerImage",
+			"dialogBG": "DialogBG_L"
+		},
+		{
+			"script": "어? 너 우리 엄마 닮았다.",
+			"characterName": "꼬맹이",
+			"characterSprite": "PlayerImage",
+			"dialogBG": "DialogBG_L"
+		},
+		{
+			"script": "(도와주는게 좋지 않을까?)",
+			"characterName": " ",
+			"characterSprite": "None",
+			"dialogBG": "DialogBG_R"
+		}
+	]
+}

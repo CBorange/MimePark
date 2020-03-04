@@ -1,0 +1,24 @@
+{
+	"readOnSceneLoad": "true",
+	"endCallback": "None",
+	"dialogLength": "3",
+	"scriptData": [{
+			"script": "너 왜 나를 도와줘?",
+			"characterName": "꼬맹이",
+			"characterSprite": "PlayerImage",
+			"dialogBG": "DialogBG_L"
+		},
+		{
+			"script": ".......",
+			"characterName": " ",
+			"characterSprite": "None",
+			"dialogBG": "DialogBG_R"
+		},
+		{
+			"script": "대답하기 싫으면 말아라, 흥!",
+			"characterName": "꼬맹이",
+			"characterSprite": "PlayerImage",
+			"dialogBG": "DialogBG_L"
+		}
+	]
+}
