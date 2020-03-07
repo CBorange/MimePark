@@ -28,7 +28,9 @@ public class PlayerInputManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
+#if UNITY_EDITOR
         PCInput();
+#endif
         if (StatManager.IsAlive)
         {
             PlayerMovement();
@@ -64,7 +66,8 @@ public class PlayerInputManager : MonoBehaviour
         for (int i = 0; i < MonsterPool.Count; ++i)
             MonsterPool[i].SetActive(true);
     }
-#region touchInput
+
+    #region Touch Input Method
     public void Go_Previous()
     {
         if (NowScene.Equals(2))
@@ -120,5 +123,5 @@ public class PlayerInputManager : MonoBehaviour
     {
         VerMov = 0;
     }
-#endregion
+    #endregion
 }

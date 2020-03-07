@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 8db95cf5cb9804d429b078969cacd87f
+timeCreated: 1511862960
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 30
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: SangSang Shinb 7
+  fontNames:
+  - SangSang Shinb 7
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

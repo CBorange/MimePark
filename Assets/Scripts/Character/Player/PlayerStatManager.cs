@@ -8,13 +8,11 @@ public class PlayerStatManager : MonoBehaviour
     #region Stat
     public bool IsAlive = true;
     public bool Shileld = false;
-    #region HP Related
-        public float HP;
-        public int RunningHPIndex = 4;
-        public int NowHPImageStage = 2;
-        private Sprite[] OriginalHPImage;
-        public Image[] HPImage;
-    #endregion
+    public float HP;
+    public int RunningHPIndex = 4;
+    public int NowHPImageStage = 2;
+    private Sprite[] OriginalHPImage;
+    public Image[] HPImage;
     #endregion
     private PlayerAnimCntrl AnimCntrl;
 
@@ -26,9 +24,9 @@ public class PlayerStatManager : MonoBehaviour
     {
         AnimCntrl = GetComponent<PlayerAnimCntrl>();
         OriginalHPImage = new Sprite[3];
-        OriginalHPImage[0] = Resources.Load<Sprite>("Sprite/HP/HP_Empty");
-        OriginalHPImage[1] = Resources.Load<Sprite>("Sprite/HP/HP_Half");
-        OriginalHPImage[2] = Resources.Load<Sprite>("Sprite/HP/HP_Full");
+        OriginalHPImage[0] = ScriptUtil.ValidateSpriteResource("Sprite/HP/HP_Empty");
+        OriginalHPImage[1] = ScriptUtil.ValidateSpriteResource("Sprite/HP/HP_Half");
+        OriginalHPImage[2] = ScriptUtil.ValidateSpriteResource("Sprite/HP/HP_Full");
     }
     public void GetHit(float Damage)
     {

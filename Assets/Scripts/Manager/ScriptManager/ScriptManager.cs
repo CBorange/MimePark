@@ -1,11 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
-using Assets.Scripts.Manager.ScriptManager;
 
 public class ScriptManager : MonoBehaviour
 {
@@ -46,10 +46,10 @@ public class ScriptManager : MonoBehaviour
     {
         // 다이얼로그에서 사용할 스프라이트 리소스 로드
         dialogSpriteResources = new Dictionary<string, Sprite>();
-        dialogSpriteResources.Add("PlayerImage", Resources.Load<Sprite>("Sprite/DialogUI/PlayerImage"));
-        dialogSpriteResources.Add("None", Resources.Load<Sprite>("Sprite/DialogUI/None"));
-        dialogSpriteResources.Add("DialogBG_L", Resources.Load<Sprite>("Sprite/DialogUI/DialogBG_L"));
-        dialogSpriteResources.Add("DialogBG_R", Resources.Load<Sprite>("Sprite/DialogUI/DialogBG_R"));
+        dialogSpriteResources.Add("PlayerImage", ScriptUtil.ValidateSpriteResource("Sprite/DialogUI/PlayerImage"));
+        dialogSpriteResources.Add("None", ScriptUtil.ValidateSpriteResource("Sprite/DialogUI/None"));
+        dialogSpriteResources.Add("DialogBG_L", ScriptUtil.ValidateSpriteResource("Sprite/DialogUI/DialogBG_L"));
+        dialogSpriteResources.Add("DialogBG_R", ScriptUtil.ValidateSpriteResource("Sprite/DialogUI/DialogBG_R"));
 
         // 다이얼로그 종료 콜백 함수 캐싱
         dialogEndCallbackDic = new Dictionary<string, DialogEndCallback>();
@@ -60,22 +60,34 @@ public class ScriptManager : MonoBehaviour
     }
     private void ApplyDialogData()
     {
-        Sprite loadedDialogBG;
-        dialogSpriteResources.TryGetValue(dialogSequence.scriptData[nowDialogPage].dialogBG,out loadedDialogBG);
-        dialogBG.sprite = loadedDialogBG;
+        Sprite loadedDialogBG = null;
+        Sprite loadedCharacterImage = null;
 
-        Sprite loadedCharacterImage;
-        dialogSpriteResources.TryGetValue(dialogSequence.scriptData[nowDialogPage].characterSprite, out loadedCharacterImage);
-        characterImage.sprite = loadedCharacterImage;
+        if (dialogSpriteResources.TryGetValue(dialogSequence.scriptData[nowDialogPage].dialogBG, out loadedDialogBG) &&
+            dialogSpriteResources.TryGetValue(dialogSequence.scriptData[nowDialogPage].characterSprite, out loadedCharacterImage))
+        {
+            dialogBG.sprite = loadedDialogBG;
+            characterImage.sprite = loadedCharacterImage;
 
-        characterName.text = dialogSequence.scriptData[nowDialogPage].characterName;
-        scriptText.text = dialogSequence.scriptData[nowDialogPage].script;
+            characterName.text = dialogSequence.scriptData[nowDialogPage].characterName;
+            scriptText.text = dialogSequence.scriptData[nowDialogPage].script;
+        }
+        else
+            Debug.Log("Resoucre Is not inclueded in Dictionary");
     }
     private void LoadStageDialogData()
     {
         // 스크립트 로드
-        string jsonData = File.ReadAllText($"{Application.dataPath}/StreamingAssets/DialogData/stage{nowStage}.json");
-        dialogSequence = JsonUtility.FromJson<DialogData>(jsonData);
+        try
+        {
+            string jsonData = File.ReadAllText($"{Application.dataPath}/StreamingAssets/DialogData/stage{nowStage}.json");
+            dialogSequence = JsonUtility.FromJson<DialogData>(jsonData);
+        }
+        catch(Exception e)
+        {
+            Debug.Log($"{Application.dataPath}/StreamingAssets/DialogData/stage{nowStage}.json : Stage Json File Is Not Founded");
+        }
+        
 
         // 종료 Callback 로드
         string[] dividedCallbacks = dialogSequence.endCallback.Split(',');
@@ -130,10 +142,10 @@ public class ScriptManager : MonoBehaviour
     private void PrintGameGuide()
     {
         beforeCallbackIsEnd = true;
-        StartCoroutine(DisplayGuide());
+        StartCoroutine(IE_DisplayGuide());
     }
 
-    private IEnumerator DisplayGuide()
+    private IEnumerator IE_DisplayGuide()
     {
         gameGuideImage.gameObject.SetActive(true);
         //Image Fade In
@@ -165,9 +177,9 @@ public class ScriptManager : MonoBehaviour
     private void PlayEndingCredit()
     {
         beforeCallbackIsEnd = false;
-        StartCoroutine(PlayVideoAndWaitOver());
+        StartCoroutine(IE_PlayVideoAndWaitOver());
     }
-    private IEnumerator PlayVideoAndWaitOver()
+    private IEnumerator IE_PlayVideoAndWaitOver()
     {
         endingCreditPlayer.gameObject.SetActive(true);
         endingCreditPlayer.Play();
