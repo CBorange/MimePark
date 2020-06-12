@@ -1,7 +1,7 @@
 # MimePark
 ## 개요
-<img src ="/ReadmeIMG/MimePark_Main.PNG" width="400px"></img>   
-<img src ="/ReadmeIMG/MimePark_Game.PNG" width="400px"></img>   
+<img src ="ReadmeIMG/MimePark_Main.PNG" width="400px"></img>   
+<img src ="ReadmeIMG/MimePark_Game.PNG" width="400px"></img>   
 넷마블 게임아카데미 2기에 참여하여 개발한 게임입니다.   
 **퍼즐/탈출** 장르의 게임으로, 유령을 피해서 거울반사 퍼즐을 해결하여   
 탈출하는것이 목적인 게임입니다.
